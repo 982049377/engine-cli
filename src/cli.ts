@@ -15,4 +15,3 @@ else if (command == "build") {
 else if (command == "run") {
     run.run();
 }
-

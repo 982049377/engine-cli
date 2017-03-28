@@ -7,13 +7,15 @@ export function buildProject(callback: () => void) {
 }
 
 export function buildEngine(callback: () => void) {
-    let projectPath = process.cwd();
+    let projectPath = process.cwd();//当前进程的所在，指的是engine.test的位置
     let configFile = path.join(projectPath, "engine.json");
     let config = fs.readJSONSync(configFile);
     let enginePath = config.engine;
     executeCommand("tsc", ["-p", enginePath], () => {
         let source = path.join(enginePath, "out");
         let target = path.join(projectPath, 'engine');
+        // console.log(source);
+        // console.log(target);
         fs.copy(source, target, callback);
     });
 }

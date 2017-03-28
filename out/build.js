@@ -9,13 +9,15 @@ function buildProject(callback) {
 }
 exports.buildProject = buildProject;
 function buildEngine(callback) {
-    var projectPath = process.cwd();
+    var projectPath = process.cwd(); //当前进程的所在，指的是engine.test的位置
     var configFile = path.join(projectPath, "engine.json");
     var config = fs.readJSONSync(configFile);
     var enginePath = config.engine;
     executeCommand("tsc", ["-p", enginePath], function () {
         var source = path.join(enginePath, "out");
         var target = path.join(projectPath, 'engine');
+        // console.log(source);
+        // console.log(target);
         fs.copy(source, target, callback);
     });
 }
