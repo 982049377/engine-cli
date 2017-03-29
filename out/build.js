@@ -5,7 +5,7 @@ var fs = require("fs-extra");
 var path = require("path");
 function buildProject(callback) {
     var projectPath = process.cwd();
-    executeCommand("tsc", ["-p", projectPath], callback);
+    executeCommand("tsc", [" -p ", projectPath], callback);
 }
 exports.buildProject = buildProject;
 function buildEngine(callback) {
@@ -13,10 +13,10 @@ function buildEngine(callback) {
     var configFile = path.join(projectPath, "engine.json");
     var config = fs.readJSONSync(configFile);
     var enginePath = config.engine;
-    executeCommand("tsc", ["-p", enginePath], function () {
+    executeCommand("tsc", [" -p ", enginePath], function () {
         var source = path.join(enginePath, "out");
         var target = path.join(projectPath, 'engine');
-        // console.log(source);
+        // console.log(enginePath);
         // console.log(target);
         fs.copy(source, target, callback);
     });

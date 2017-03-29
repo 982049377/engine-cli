@@ -3,7 +3,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 export function buildProject(callback: () => void) {
     let projectPath = process.cwd();
-    executeCommand("tsc", ["-p", projectPath], callback);
+    executeCommand("tsc", [" -p ", projectPath], callback);
 }
 
 export function buildEngine(callback: () => void) {
@@ -11,10 +11,10 @@ export function buildEngine(callback: () => void) {
     let configFile = path.join(projectPath, "engine.json");
     let config = fs.readJSONSync(configFile);
     let enginePath = config.engine;
-    executeCommand("tsc", ["-p", enginePath], () => {
+    executeCommand("tsc", [" -p ", enginePath], () => {
         let source = path.join(enginePath, "out");
         let target = path.join(projectPath, 'engine');
-        // console.log(source);
+        // console.log(enginePath);
         // console.log(target);
         fs.copy(source, target, callback);
     });
