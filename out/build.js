@@ -17,13 +17,22 @@ function buildEngine(callback) {
         var source = path.join(enginePath, "out");
         var target = path.join(projectPath, 'engine');
         // console.log(enginePath);
-        // console.log(target);
+        console.log(target);
         fs.copy(source, target, callback);
+        // source = path.join(enginePath, "loading.png");
+        // console.log(enginePath);
+        // console.log(target);
+        // fs.copy(source, projectPath, callback);
     });
 }
 exports.buildEngine = buildEngine;
 function executeCommand(command, args, callback) {
-    var child_process = cp.exec(command, args);
+    args.forEach(function (element) {
+        command += element;
+    });
+    // command += args;
+    var child_process = cp.exec(command);
+    console.log(command);
     child_process.stdout.addListener("data", function (data) {
         console.log(data.toString());
     });

@@ -15,13 +15,22 @@ export function buildEngine(callback: () => void) {
         let source = path.join(enginePath, "out");
         let target = path.join(projectPath, 'engine');
         // console.log(enginePath);
-        // console.log(target);
+        console.log(target);
         fs.copy(source, target, callback);
+        // source = path.join(enginePath, "loading.png");
+        // console.log(enginePath);
+        // console.log(target);
+        // fs.copy(source, projectPath, callback);
     });
 }
 
 function executeCommand(command: string, args: string[], callback: () => void) {
-    let child_process = cp.exec(command, args);
+    args.forEach(element => {
+        command += element;
+    });
+    // command += args;
+    let child_process = cp.exec(command);
+    console.log(command);
     child_process.stdout.addListener("data", data => {
         console.log(data.toString())
     })
