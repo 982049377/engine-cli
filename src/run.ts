@@ -1,9 +1,9 @@
 import * as StaticServer from 'static-server';
 
-export function run() {
+export function run(projectPath:string) {
 
     var server = new StaticServer({
-        rootPath: '.',            // required, the root of the server file tree 
+        rootPath: projectPath,            // required, the root of the server file tree 
         name: 'my-http-server',   // optional, will set "X-Powered-by" HTTP header 
         port: 1337,               // optional, defaults to a random port 
         cors: '*',                // optional, defaults to undefined 

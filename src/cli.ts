@@ -13,5 +13,6 @@ else if (command == "build") {
     build.buildAll();
 }
 else if (command == "run") {
-    run.run();
+    let projectPath = process.argv[3];
+    run.run(process.argv[3]);
 }

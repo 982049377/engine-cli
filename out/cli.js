@@ -14,6 +14,7 @@ else if (command == "build") {
     build.buildAll();
 }
 else if (command == "run") {
-    run.run();
+    var projectPath = process.argv[3];
+    run.run(process.argv[3]);
 }
 //# sourceMappingURL=cli.js.map
